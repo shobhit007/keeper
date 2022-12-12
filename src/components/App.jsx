@@ -38,19 +38,17 @@ function App() {
     <div>
       <Header />
       <CreateArea onAdd={addNote} />
-      <div className="notes">
-        {notes.map((noteItem) => {
-          return (
-            <Note
-              key={noteItem._id}
-              id={noteItem._id}
-              title={noteItem.title}
-              content={noteItem.content}
-              onDelete={deleteNote}
-            />
-          );
-        })}
-      </div>
+      {notes.map((noteItem) => {
+        return (
+          <Note
+            key={noteItem._id}
+            id={noteItem._id}
+            title={noteItem.title}
+            content={noteItem.content}
+            onDelete={deleteNote}
+          />
+        );
+      })}
     </div>
   );
 }

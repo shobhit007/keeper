@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Add } from "@mui/icons-material";
-import { Fab, Zoom } from "@mui/material";
 
 function CreateArea(props) {
   const [note, setNote] = useState({
@@ -23,7 +21,7 @@ function CreateArea(props) {
   function submitNote(event) {
     props.onAdd(note);
     setNote({ title: "", content: "" });
-    setExpand(false);
+    setExpand((p) => !p);
     event.preventDefault();
   }
 
@@ -51,11 +49,12 @@ function CreateArea(props) {
           rows={isExpand ? 3 : 1}
           value={note.content}
         />
-        <Zoom in={isExpand}>
-          <Fab onClick={submitNote}>
-            <Add />
-          </Fab>
-        </Zoom>
+        {isExpand && (
+          <div className="buttons">
+            <button onClick={() => setExpand((p) => !p)}>Close</button>
+            <button onClick={submitNote}>Add</button>
+          </div>
+        )}
       </form>
     </div>
   );
